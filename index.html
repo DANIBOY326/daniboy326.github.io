@@ -85,28 +85,28 @@
             <div class="services-box">
                 <i class='bx bx-brush'></i> 
                 <h3>Graphic Design</h3>
-                <p>I give you creative visual solutions that communicate ideas and build brand identity with clarity and impact.</p>
+                <p>10+ years expertise in Graphic Design & Brand Development</p>
                 <a href="#" class="btn">Read More</a>
             </div>
             
             <div class="services-box">
-                <i class='bx bxs-bulb'></i>
+                <i class='bx bx-code'></i>
                 <h3>Brand Design</h3>
-                <p>I thrive in crafting timeless brand identities that connect emotionally and leave a lasting impression.</p>
+                <p>A passion for E-Learning and EduTech technologies.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+
+            <div class="services-box">
+                <i class='bx  bx-message-detail'></i>   
+                <h3>Video Editing</h3>
+                <p>A passion for E-Learning and EduTech technologies.</p>
                 <a href="#" class="btn">Read More</a>
             </div>
 
             <div class="services-box">
                 <i class='bx  bx-video'></i>   
-                <h3>Video Editing</h3>
-                <p>Transforming raw footage into engaging stories that inspire, inform, and captivate audiences is my thing.</p>
-                <a href="#" class="btn">Read More</a>
-            </div>
-
-            <div class="services-box">
-                <i class='bx  bx-message-detail'></i>  
                 <h3>UI/UX</h3>
-                <p>Designing seamless digital experiences that blend beauty, usability, and functionality.</p>
+                <p>A passion for creating classic and value driven videos.</p>
                 <a href="#" class="btn">Read More</a>
             </div>
         </div>
@@ -299,7 +299,7 @@
         </div>
     </section>
 
-     <!-- =================== TESTIMONIAL SECTION =================== -->
+    <!-- =================== TESTIMONIAL SECTION =================== -->
 <section class="testimonials" id="testimonials">
   <h2 class="heading">Client <span>Testimonials</span></h2>
 
@@ -330,57 +330,24 @@
 
   </div>
 </div>
-    
+
     <!-- contact <section></section> -->
-    <section class="contact" id="contact">
-    <h2 class="heading">Contact <span>Me!</span></h2>
+     <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
 
-    <form id="contact-form">
-        <div class="input-box">
-            <input type="text" name="name" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email Address" required>
-        </div>
-
-        <div class="input-box">
-            <input type="number" name="phone" placeholder="Mobile Number">
-            <input type="text" name="subject" placeholder="Email Subject" required>
-        </div>
-
-        <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
-
-        <input type="submit" value="Send Message" class="btn">
-    </form>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // prevent default form submission
-
-        const data = {
-            name: form.name.value,
-            email: form.email.value,
-            phone: form.phone.value,
-            subject: form.subject.value,
-            message: form.message.value
-        };
-
-        const response = await fetch('https://formspree.io/f/xkgkovdd', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-
-        if (response.ok) {
-            alert('Message sent successfully!');
-            form.reset();
-        } else {
-            alert('Oops! Something went wrong.');
-        }
-    });
-});
-</script>
+        <form action="#">
+            <div class="input-box">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+            </div>
+            <div class="input-box">
+                <input type="number" placeholder="Mobile number">
+                <input type="text" placeholder="Email Subject">
+            </div>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+     </section>
 
      <!-- footer design -->
       <footer class="footer">
@@ -402,14 +369,4 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- custom js -->
     <script src="../js/script.js"></script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
