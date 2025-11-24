@@ -299,6 +299,38 @@
         </div>
     </section>
 
+     <!-- =================== TESTIMONIAL SECTION =================== -->
+<section class="testimonials" id="testimonials">
+  <h2 class="heading">Client <span>Testimonials</span></h2>
+
+  <button class="btn open-testimonial-form">Leave a Recommendation</button>
+
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <p>"DGConcept delivered exactly what I wanted for my brand. He is fast, professional and creative!
+        I recommend him for a suitable team"</p>
+      <h4>- DBase Tech</h4>
+    </div>
+  </div>
+</section>
+
+<!-- Modal Testimonial Form -->
+<div class="testimonial-modal" id="testimonialModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <h3>Leave a Recommendation</h3>
+
+    <form action="https://formspree.io/f/xgvboykg" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="text" name="project" placeholder="Project Worked On">
+      <textarea name="message" placeholder="Your recommendation..." required></textarea>
+      <button type="submit" class="btn">Submit Recommendation</button>
+    </form>
+
+  </div>
+</div>
+    
     <!-- contact <section></section> -->
     <section class="contact" id="contact">
     <h2 class="heading">Contact <span>Me!</span></h2>
@@ -372,6 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
