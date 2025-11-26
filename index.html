@@ -7,36 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio | Daniel (Temitope) Ojo</title>
 
- <!-- Firebase SDK: Place this BEFORE your main JS file -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-      import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-
-      const firebaseConfig = {
-        apiKey: "AIzaSyCUg3Ardzns-vbz6RSFdhN0KS_eqGnWy1o",
-        authDomain: "daniboy-portfolio.firebaseapp.com",
-        projectId: "daniboy-portfolio",
-        storageBucket: "daniboy-portfolio.appspot.com",
-        messagingSenderId: "781709085894",
-        appId: "1:781709085894:web:69d36140ce8377e66bdbc7",
-        measurementId: "G-BNTBKP6FVP"
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-      const db = getFirestore(app);
-
-      // Expose Firestore functions globally for script.js
-      window.db = db;
-      window.collection = collection;
-      window.addDoc = addDoc;
-      window.getDocs = getDocs;
-      window.query = query;
-      window.orderBy = orderBy;
-    </script>
-
-
     <!-- box icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -341,6 +311,45 @@
         I recommend him for a suitable team"</p>
       <h4>- DBase Tech</h4>
     </div>
+
+    <div class="testimonial-card">
+      <p>"Daniel created stunning visuals for Rosa Signature Store that perfectly captured our brand
+        elegance. His creativity and professionalism brought our vision to life—our customers have
+        noticed the difference!"</p>
+      <h4>- Rosa Signature Store</h4>
+    </div>
+    
+    <div class="testimonial-card">
+      <p>"I wish I could have Daniel by my side all the time. He's a great team mate, I believe Daniel
+        will definitely blow the mind of his clients over and over again"</p>
+      <h4>- Kelechi C. Ogbodo (Human Capacity Dev./Serial Entrepreneur)</h4>
+    </div>
+    
+    <div class="testimonial-card">
+      <p>"His designs for JPI Kogi State Chapter were exceptional. He has been delivering engaging,
+        consistent and professional graphics that elevated our events and campaigns. Truly a reliable and talented
+        designer!"</p>
+      <h4>- JPI Kogi State Chapter</h4>
+    </div>
+
+    <div class="testimonial-card">
+      <p>"I recommend Daniel, he is a dedicated designer. His creative skills and attention to detail consistently
+        elevated our projects. He added greatly to our team."</p>
+      <h4>- Adaeze Ejimofor (VA/Prog. Adm.)</h4>
+    </div>
+
+    <div class="testimonial-card">
+      <p>"I recommend him for highly quality designs are prints"</p>
+      <h4>- Livinus Ihum</h4>
+    </div>
+
+    <div class="testimonial-card">
+      <p>"Daniel is a great designer. He takes his time to deliver quality job. I've worked with him and I will say
+        he's got so much value to deliver. He is passionate about graphics designing and I see him advancing in this
+        skill."</p>
+      <h4>- Ruth Uzoma (Software Dev./Operation Analyst)</h4>
+    </div>
+    
   </div>
 </section>
 
@@ -351,7 +360,7 @@
 
     <h3>Leave a Recommendation</h3>
 
-    <form id="testimonialForm">
+    <form action="https://formspree.io/f/xgvboykg" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="text" name="project" placeholder="Project Worked On">
       <textarea name="message" placeholder="Your recommendation..." required></textarea>
