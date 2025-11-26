@@ -7,6 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio | Daniel (Temitope) Ojo</title>
 
+ <!-- Firebase SDK: Place this BEFORE your main JS file -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCUg3Ardzns-vbz6RSFdhN0KS_eqGnWy1o",
+        authDomain: "daniboy-portfolio.firebaseapp.com",
+        projectId: "daniboy-portfolio",
+        storageBucket: "daniboy-portfolio.appspot.com",
+        messagingSenderId: "781709085894",
+        appId: "1:781709085894:web:69d36140ce8377e66bdbc7",
+        measurementId: "G-BNTBKP6FVP"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app);
+
+      // Expose Firestore functions globally for script.js
+      window.db = db;
+      window.collection = collection;
+      window.addDoc = addDoc;
+      window.getDocs = getDocs;
+      window.query = query;
+      window.orderBy = orderBy;
+    </script>
+
+
     <!-- box icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -321,7 +351,7 @@
 
     <h3>Leave a Recommendation</h3>
 
-    <form action="https://formspree.io/f/xgvboykg" method="POST">
+    <form id="testimonialForm">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="text" name="project" placeholder="Project Worked On">
       <textarea name="message" placeholder="Your recommendation..." required></textarea>
