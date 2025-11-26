@@ -1,4 +1,4 @@
-// toggle icon navbar
+// ===== NAVBAR TOGGLE =====
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
@@ -7,7 +7,7 @@ menuIcon.onclick = () => {
     navbar.classList.toggle('active');
 };
 
-// scroll sections active link
+// ===== SCROLL ACTIVE LINK =====
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 
@@ -29,80 +29,88 @@ window.onscroll = () => {
     header.classList.toggle('sticky', window.scrollY > 100);
 };
 
-// remove toggle icon and navbar when click navbar link (scroll)
-    document.querySelectorAll('.navbar a').forEach(link => {
+// ===== CLOSE NAVBAR ON LINK CLICK =====
+document.querySelectorAll('.navbar a').forEach(link => {
     link.addEventListener('click', () => {
-    menuIcon.classList.remove('bx-x');
-    navbar.classList.remove('active');
-  });
+        menuIcon.classList.remove('bx-x');
+        navbar.classList.remove('active');
+    });
 });
 
-// scroll reveal
-ScrollReveal({
-    reset: true,
-    distance: '80px',
-    duration: 2000,
-    delay: 200
-});
-
-// Reveal different sections
+// ===== SCROLL REVEAL =====
+ScrollReveal({ reset: true, distance: '80px', duration: 2000, delay: 200 });
 ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
 ScrollReveal().reveal('.home-img, .services-container, .portfolio-box, .contact form', { origin: 'bottom' });
 ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
 ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 
-
-// ====== Testimonial Modal ======
-const testimonialBtn = document.querySelector('.open-testimonial-form');
-const modal = document.getElementById('testimonialModal');
-const closeModal = document.querySelector('.close-modal');
-
-testimonialBtn.addEventListener('click', () => {
-  modal.style.display = 'flex';
-});
-
-closeModal.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-
-window.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.style.display = 'none';
-  }
-});
-
-// ====== Add Testimonial Dynamically ======
-const form = document.querySelector('#testimonialModal form');
-const testimonialGrid = document.querySelector('.testimonial-grid');
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();  // Stop page reload
-
-  const name = form.name.value;
-  const project = form.project.value;
-  const message = form.message.value;
-
-  // Create a new testimonial card
-  const newCard = document.createElement('div');
-  newCard.classList.add('testimonial-card');
-  newCard.innerHTML = `
-    <p>"${message}"</p>
-    <h4>- ${name}${project ? ', ' + project : ''}</h4>
-  `;
-
-  // Add it to the grid live on the website
-  testimonialGrid.appendChild(newCard);
-
-  // Close modal + reset
-  modal.style.display = 'none';
-  form.reset();
-});
-
-// typed js
-const typed = new Typed ('.multiple-text', {
-    strings: ['Visual Designer', 'Graphic Designer', 'Brand Designer', 'UI/UX Designer',],
+// ===== TYPED JS =====
+const typed = new Typed('.multiple-text', {
+    strings: ['Visual Designer', 'Graphic Designer', 'Brand Designer', 'UI/UX Designer'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
     loop: true
 });
+
+// ===== TESTIMONIAL MODAL =====
+const testimonialBtn = document.querySelector('.open-testimonial-form');
+const modal = document.getElementById('testimonialModal');
+const closeModal = document.querySelector('.close-modal');
+
+testimonialBtn.addEventListener('click', () => { modal.style.display = 'flex'; });
+closeModal.addEventListener('click', () => { modal.style.display = 'none'; });
+window.addEventListener('click', (e) => { if(e.target === modal) modal.style.display = 'none'; });
+
+// ===== FIRESTORE TESTIMONIALS =====
+const form = document.querySelector('#testimonialModal form');
+const testimonialGrid = document.querySelector('.testimonial-grid');
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = form.name.value;
+    const project = form.project.value;
+    const message = form.message.value;
+
+    try {
+        await window.addDoc(window.collection(window.db, "testimonials"), {
+            name,
+            project,
+            message,
+            timestamp: Date.now()
+        });
+
+        showToast("Thank you! Your testimonial has been submitted."); // <- toast replaces alert
+        modal.style.display = "none";
+        form.reset();
+
+        loadTestimonials();
+
+    } catch (error) {
+        console.error("Error saving testimonial:", error);
+        showToast("Oops! Something went wrong. Please try again.");
+    }
+});
+
+// Load testimonials dynamically
+async function loadTestimonials() {
+    testimonialGrid.innerHTML = "";
+
+    const q = window.query(window.collection(window.db, "testimonials"), window.orderBy("timestamp", "desc"));
+    const snapshot = await window.getDocs(q);
+
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        const newCard = document.createElement("div");
+        newCard.classList.add("testimonial-card");
+        newCard.innerHTML = `
+            <p>"${data.message}"</p>
+            <h4>- ${data.name}${data.project ? ', ' + data.project : ''}</h4>
+        `;
+        testimonialGrid.appendChild(newCard);
+    });
+}
+
+// Load on page load
+loadTestimonials();
